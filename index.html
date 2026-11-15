@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENTS AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <aside class="sidebar">
+
+            <h2>🎓 STUDENTS AI</h2>
+
+            <button class="new-chat" onclick="newChat()">
+                + New Chat
+            </button>
+
+            <!-- PROGRAMME SELECTION -->
+            <div class="programme-section">
+
+                <h3>📚 Select Programme</h3>
+
+                <select id="programme-select" onchange="updateYearOptions()">
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="M.Tech">M.Tech</option>
+                    <option value="Ph.D">Ph.D</option>
+                </select>
+
+                <h3>Select Year</h3>
+
+                <select id="year-select">
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+
+            </div>
+
+            <h3>Recent Chats</h3>
+            <div id="chat-history"></div>
+
+            <div class="sidebar-bottom">
+                <p>PMIST Regulations Assistant</p>
+                <p>English | தமிழ் | Tanglish</p>
+            </div>
+
+        </aside>
+
+        <main class="chat-container">
+
+            <header class="top-bar">
+                <h3>STUDENTS AI</h3>
+                <span>PMIST Academic Assistant</span>
+            </header>
+
+            <section class="welcome-screen" id="welcome-screen">
+
+                <h1>How can I help you today?</h1>
+                <p>Ask anything about PMIST regulations.</p>
+
+                <div class="suggestions">
+
+                    <button onclick="useSuggestion('Explain attendance rules')">
+                        Attendance Rules
+                    </button>
+
+                    <button onclick="useSuggestion('Explain examination regulations')">
+                        Examination Rules
+                    </button>
+
+                    <button onclick="useSuggestion('Explain semester regulations')">
+                        Semester Regulations
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="messages" id="messages"></section>
+
+            <div class="input-area">
+
+                <textarea
+                    id="user-input"
+                    placeholder="Ask your question..."
+                    rows="1"
+                ></textarea>
+
+                <button onclick="sendMessage()">➤</button>
+
+            </div>
+
+            <p class="disclaimer">
+                STUDENTS AI can make mistakes. Verify important information
+                with official regulations.
+            </p>
+
+        </main>
+
+    </div>
+
+    <!-- YEAR OPTIONS -->
+    <script>
+        function updateYearOptions() {
+
+            const programme =
+                document.getElementById("programme-select").value;
+
+            const yearSelect =
+                document.getElementById("year-select");
+
+            yearSelect.innerHTML = "";
+
+            let years = [];
+
+            if (programme === "B.Tech") {
+                years = [
+                    "1st Year",
+                    "2nd Year",
+                    "3rd Year",
+                    "4th Year"
+                ];
+            }
+            else if (programme === "M.Tech") {
+                years = [
+                    "1st Year",
+                    "2nd Year"
+                ];
+            }
+            else if (programme === "Ph.D") {
+                years = ["Research"];
+            }
+
+            years.forEach(function(year) {
+                const option = document.createElement("option");
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+        }
+    </script>
+
+    <script src="/static/js/app.js"></script>
+
+</body>
+</html>
